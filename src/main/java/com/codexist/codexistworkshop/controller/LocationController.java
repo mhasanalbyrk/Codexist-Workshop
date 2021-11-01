@@ -1,17 +1,26 @@
 package com.codexist.codexistworkshop.controller;
 
+import com.codexist.codexistworkshop.model.Location;
+import com.codexist.codexistworkshop.service.LocationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/")
 public class LocationController {
 
-    @GetMapping("/location")
-    public ResponseEntity<?> getLocation(){
+    private LocationService locationService;
 
-        return null;
+    @Autowired
+    public LocationController(LocationService locationService) {
+        this.locationService = locationService;
+    }
+
+    @GetMapping("/location")
+    public ResponseEntity<?> getLocation(@RequestBody Location location){
+
+        String result = locationService.googleApiCall(location);
+        return ResponseEntity.ok(result);
     }
 }
