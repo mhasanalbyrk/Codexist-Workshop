@@ -6,6 +6,7 @@ import com.codexist.codexistworkshop.model.NearbyPlaces;
 import com.codexist.codexistworkshop.repository.LocationRepository;
 import com.codexist.codexistworkshop.service.LocationService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
+
 @AllArgsConstructor
 public class LocationServiceImpl implements LocationService {
 
