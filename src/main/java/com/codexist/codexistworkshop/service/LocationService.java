@@ -1,14 +1,12 @@
 package com.codexist.codexistworkshop.service;
 
-import com.codexist.codexistworkshop.model.Location;
+import com.codexist.codexistworkshop.model.GeoLocation;
+import com.codexist.codexistworkshop.model.NearbyPlaces;
 import org.springframework.boot.configurationprocessor.json.JSONException;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
-
-import java.util.List;
 
 public interface LocationService {
 
-   public String compareLocation(Location location);
+   public NearbyPlaces compareLocation(GeoLocation geoLocation);
 
-   public String googleApiCall(Location location) throws JSONException;
+   public NearbyPlaces googleApiCall(GeoLocation geoLocation) throws JSONException;
 }

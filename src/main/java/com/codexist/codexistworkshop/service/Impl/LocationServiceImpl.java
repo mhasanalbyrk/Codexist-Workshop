@@ -1,7 +1,8 @@
 package com.codexist.codexistworkshop.service.Impl;
 
 import com.codexist.codexistworkshop.dto.RestResponse;
-import com.codexist.codexistworkshop.model.Location;
+import com.codexist.codexistworkshop.model.GeoLocation;
+import com.codexist.codexistworkshop.model.NearbyPlaces;
 import com.codexist.codexistworkshop.repository.LocationRepository;
 import com.codexist.codexistworkshop.service.LocationService;
 import lombok.AllArgsConstructor;
@@ -22,29 +23,30 @@ public class LocationServiceImpl implements LocationService {
     @Qualifier("googleRestTemplate")
     private final RestTemplate newRestTemplate;
 
-    public Location createLocation(Location location){
+    public GeoLocation createLocation(GeoLocation geoLocation){
 
-        return locationRepository.save(location);
+        return locationRepository.save(geoLocation);
     }
 
     @Override
-    public String compareLocation(Location location) {
-        
-        List<Location> locationList = locationRepository.findAll();
-        for (Location location1 : locationList) {
-            if (Objects.equals(location1.getAltitude(), location.getAltitude()) &&
-                    Objects.equals(location1.getLongitude(), location.getLongitude()) &&
-                    Objects.equals(location1.getRadius(), location.getRadius())){
-                return location1.getResponse();
-            }
+    public NearbyPlaces compareLocation(GeoLocation geoLocation) {
+
+
+        if (locationRepository.existsByLocation(
+                  geoLocation.getAltitude().toString()
+                + geoLocation.getLongitude().toString()
+                + geoLocation.getRadius().toString())){
+
+            return null;
         }
-        return "New";
+
+        return null;
     }
 
-    public String googleApiCall(Location location) throws JSONException {
+    public NearbyPlaces googleApiCall(GeoLocation geoLocation) throws JSONException {
 
-        String comparedLocation = compareLocation(location);
-        if ("New".equals(comparedLocation)) {
+        NearbyPlaces comparedLocation = compareLocation(geoLocation);
+        if (comparedLocation == null) {
 
 
             //"https://maps.googleapis.com/maps/api/place/textsearch/
@@ -54,26 +56,22 @@ public class LocationServiceImpl implements LocationService {
             // radius=2000&
             // region=us&type=cafe,bakery&
             // key=MY_API_KEY"
-            String MY_API_KEY = "key";
+            String MY_API_KEY = "";
             //https://www.geeksforgeeks.org/how-to-call-or-consume-external-api-in-spring-boot/
             String uri = "https://maps.googleapis.com/maps/api/place/nearbysearch/" +
                     "json?location=" +
-                    location.getAltitude() +
+                    geoLocation.getAltitude() +
                     "," +
-                    location.getLongitude() +
+                    geoLocation.getLongitude() +
                     "&radius=" +
-                    location.getRadius() +
+                    geoLocation.getRadius() +
                     "&key=" + MY_API_KEY;
             RestTemplate restTemplate = new RestTemplate();
-            //Gson gson = new Gson();
 
-            //RestResponse response = new RestResponse();
-            RestResponse result = restTemplate.getForEntity(uri, RestResponse.class);
-          //result = gson.toJson(result);
-            //JSONObject jsonObject= new JSONObject(result);
-            //location.setResponse(result);
+            ResponseEntity<RestResponse> result = restTemplate.getForEntity(uri, RestResponse.class);
 
-            createLocation(location);
+
+            createLocation(geoLocation);
             return null;
         }
         else {
