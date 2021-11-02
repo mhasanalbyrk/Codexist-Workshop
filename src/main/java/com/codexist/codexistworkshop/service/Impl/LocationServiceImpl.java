@@ -46,7 +46,7 @@ public class LocationServiceImpl implements LocationService {
             // radius=2000&
             // region=us&type=cafe,bakery&
             // key=MY_API_KEY"
-            String MY_API_KEY = "AIzaSyDG5EqcpZAoTPVBvXha84hg8nJScRwYv4c";
+            String MY_API_KEY = "";
             //https://www.geeksforgeeks.org/how-to-call-or-consume-external-api-in-spring-boot/
             String uri = "https://maps.googleapis.com/maps/api/place/nearbysearch/" +
                     "json?location=" +
