@@ -1,8 +1,9 @@
 package com.codexist.codexistworkshop.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
+
 
 import javax.persistence.*;
 
@@ -12,16 +13,16 @@ import javax.persistence.*;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Location  {
+public class Location extends BaseEntity {
 
+
+
+    private String location;
     private Long longitude;
     private Long altitude;
     private Long radius;
     @Column(columnDefinition = "LONGTEXT")
     private String response;
-    //private JSONObject kk;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
 
 }

@@ -1,12 +1,13 @@
 package com.codexist.codexistworkshop.service.Impl;
 
+import com.codexist.codexistworkshop.dto.RestResponse;
 import com.codexist.codexistworkshop.model.Location;
 import com.codexist.codexistworkshop.repository.LocationRepository;
 import com.codexist.codexistworkshop.service.LocationService;
-import com.google.gson.Gson;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.configurationprocessor.json.JSONException;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -14,14 +15,12 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
+@AllArgsConstructor
 public class LocationServiceImpl implements LocationService {
 
     private final LocationRepository locationRepository;
-
-    @Autowired
-    public LocationServiceImpl(LocationRepository locationRepository) {
-        this.locationRepository = locationRepository;
-    }
+    @Qualifier("googleRestTemplate")
+    private final RestTemplate newRestTemplate;
 
     public Location createLocation(Location location){
 
@@ -42,8 +41,7 @@ public class LocationServiceImpl implements LocationService {
         return "New";
     }
 
-    public JSONObject googleApiCall(Location location) throws JSONException {
-
+    public String googleApiCall(Location location) throws JSONException {
 
         String comparedLocation = compareLocation(location);
         if ("New".equals(comparedLocation)) {
@@ -67,18 +65,19 @@ public class LocationServiceImpl implements LocationService {
                     location.getRadius() +
                     "&key=" + MY_API_KEY;
             RestTemplate restTemplate = new RestTemplate();
-            Gson gson = new Gson();
+            //Gson gson = new Gson();
 
-            String result = restTemplate.getForObject(uri, String.class);
-          // result = gson.toJson(result);
-            JSONObject jsonObject= new JSONObject(result);
-            location.setResponse(result);
+            //RestResponse response = new RestResponse();
+            RestResponse result = restTemplate.getForEntity(uri, RestResponse.class);
+          //result = gson.toJson(result);
+            //JSONObject jsonObject= new JSONObject(result);
+            //location.setResponse(result);
 
             createLocation(location);
-            return jsonObject;
+            return null;
         }
         else {
-            return  new JSONObject(comparedLocation);
+            return   null;
         }
     }
 }

@@ -22,7 +22,7 @@ public class LocationController {
     @GetMapping("/location")
     public ResponseEntity<?> getLocation(@RequestBody Location location) throws JSONException {
 
-        JSONObject result = locationService.googleApiCall(location);
-        return ResponseEntity.ok(result.toString());
+        String result = locationService.googleApiCall(location);
+        return ResponseEntity.ok(result);
     }
 }

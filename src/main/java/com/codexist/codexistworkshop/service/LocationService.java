@@ -10,5 +10,5 @@ public interface LocationService {
 
    public String compareLocation(Location location);
 
-   public JSONObject googleApiCall(Location location) throws JSONException;
+   public String googleApiCall(Location location) throws JSONException;
 }
