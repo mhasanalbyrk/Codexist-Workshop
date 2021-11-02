@@ -3,21 +3,21 @@ package com.codexist.codexistworkshop.controller;
 import com.codexist.codexistworkshop.model.GeoLocation;
 import com.codexist.codexistworkshop.model.NearbyPlaces;
 import com.codexist.codexistworkshop.service.LocationService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/")
 public class LocationController {
 
     private LocationService locationService;
 
-    @Autowired
-    public LocationController(LocationService locationService) {
-        this.locationService = locationService;
-    }
 
     @GetMapping("/location")
     public ResponseEntity<?> getLocation(@RequestBody GeoLocation geoLocation) throws JSONException {

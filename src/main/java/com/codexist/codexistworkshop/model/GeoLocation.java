@@ -1,11 +1,10 @@
 package com.codexist.codexistworkshop.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-
-
-import javax.persistence.*;
 
 @Getter
 @Setter
@@ -15,12 +14,9 @@ import javax.persistence.*;
 public class GeoLocation extends BaseEntity {
 
 
-
-    private String location;
     private Long longitude;
     private Long altitude;
     private Long radius;
-    private String response;
 
 
 }

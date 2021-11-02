@@ -12,9 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
-import java.util.Objects;
-
 @Service
 @AllArgsConstructor
 public class LocationServiceImpl implements LocationService {
@@ -23,19 +20,14 @@ public class LocationServiceImpl implements LocationService {
     @Qualifier("googleRestTemplate")
     private final RestTemplate newRestTemplate;
 
-    public GeoLocation createLocation(GeoLocation geoLocation){
-
-        return locationRepository.save(geoLocation);
-    }
-
     @Override
     public NearbyPlaces compareLocation(GeoLocation geoLocation) {
 
 
         if (locationRepository.existsByLocation(
-                  geoLocation.getAltitude().toString()
-                + geoLocation.getLongitude().toString()
-                + geoLocation.getRadius().toString())){
+                geoLocation.getAltitude().toString()
+                        + geoLocation.getLongitude().toString()
+                        + geoLocation.getRadius().toString())) {
 
             return null;
         }
@@ -47,8 +39,6 @@ public class LocationServiceImpl implements LocationService {
 
         NearbyPlaces comparedLocation = compareLocation(geoLocation);
         if (comparedLocation == null) {
-
-
             //"https://maps.googleapis.com/maps/api/place/textsearch/
             // json?query=coffee+shop&
             // location=35.792491,
@@ -56,7 +46,7 @@ public class LocationServiceImpl implements LocationService {
             // radius=2000&
             // region=us&type=cafe,bakery&
             // key=MY_API_KEY"
-            String MY_API_KEY = "";
+            String MY_API_KEY = "AIzaSyDG5EqcpZAoTPVBvXha84hg8nJScRwYv4c";
             //https://www.geeksforgeeks.org/how-to-call-or-consume-external-api-in-spring-boot/
             String uri = "https://maps.googleapis.com/maps/api/place/nearbysearch/" +
                     "json?location=" +
@@ -71,11 +61,9 @@ public class LocationServiceImpl implements LocationService {
             ResponseEntity<RestResponse> result = restTemplate.getForEntity(uri, RestResponse.class);
 
 
-            createLocation(geoLocation);
             return null;
-        }
-        else {
-            return   null;
+        } else {
+            return null;
         }
     }
 }
