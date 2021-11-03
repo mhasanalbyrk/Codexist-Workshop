@@ -1,9 +1,10 @@
 package com.codexist.codexistworkshop.controller;
 
-import com.codexist.codexistworkshop.model.GeoLocation;
-import com.codexist.codexistworkshop.model.NearbyPlaces;
+
 import com.codexist.codexistworkshop.service.LocationService;
-import lombok.RequiredArgsConstructor;
+import com.example.dbmodel.model.GeoLocation;
+import com.example.dbmodel.model.NearbyPlaces;
+import lombok.AllArgsConstructor;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequiredArgsConstructor
+@AllArgsConstructor
 @RequestMapping("/api/")
 public class LocationController {
 

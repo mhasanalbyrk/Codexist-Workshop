@@ -1,4 +1,4 @@
-package com.codexist.codexistworkshop.model;
+package com.example.dbmodel.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Geometry extends BaseEntity{
+public class Geometry extends BaseEntity {
     @JsonProperty("location")
     @OneToOne
     private Location location;

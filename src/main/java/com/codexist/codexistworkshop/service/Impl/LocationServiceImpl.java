@@ -1,12 +1,11 @@
 package com.codexist.codexistworkshop.service.Impl;
 
-import com.codexist.codexistworkshop.dto.RestResponse;
-import com.codexist.codexistworkshop.model.GeoLocation;
-import com.codexist.codexistworkshop.model.NearbyPlaces;
-import com.codexist.codexistworkshop.repository.LocationRepository;
+import com.codexist.codexistworkshop.dto.NearbyResponse;
 import com.codexist.codexistworkshop.service.LocationService;
+import com.example.dbmodel.model.GeoLocation;
+import com.example.dbmodel.model.NearbyPlaces;
+import com.example.dbmodel.repository.NearbyPlacesRepository;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +16,7 @@ import org.springframework.web.client.RestTemplate;
 @AllArgsConstructor
 public class LocationServiceImpl implements LocationService {
 
-    private final LocationRepository locationRepository;
+    private final NearbyPlacesRepository nearbyPlacesRepository;
     @Qualifier("googleRestTemplate")
     private final RestTemplate newRestTemplate;
 
@@ -35,7 +34,7 @@ public class LocationServiceImpl implements LocationService {
 //
 //        return null;
 
-        return  null;
+        return null;
     }
 
     public NearbyPlaces googleApiCall(GeoLocation geoLocation) throws JSONException {
@@ -61,7 +60,7 @@ public class LocationServiceImpl implements LocationService {
                     "&key=" + MY_API_KEY;
             RestTemplate restTemplate = new RestTemplate();
 
-            ResponseEntity<RestResponse> result = restTemplate.getForEntity(uri, RestResponse.class);
+            ResponseEntity<NearbyResponse> result = restTemplate.getForEntity(uri, NearbyResponse.class);
 
 
             return null;

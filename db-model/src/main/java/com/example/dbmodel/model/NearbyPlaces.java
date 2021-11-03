@@ -1,10 +1,10 @@
-package com.codexist.codexistworkshop.model;
+package com.example.dbmodel.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import java.util.List;
 
 @Getter

@@ -1,7 +1,7 @@
-package com.codexist.codexistworkshop.model;
+package com.example.dbmodel.model;
 
 import lombok.*;
-import lombok.experimental.SuperBuilder;
+
 @Getter
 @Setter
 @Builder

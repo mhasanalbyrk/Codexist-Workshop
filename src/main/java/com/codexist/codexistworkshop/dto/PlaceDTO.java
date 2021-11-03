@@ -1,9 +1,9 @@
 package com.codexist.codexistworkshop.dto;
 
+
+import com.example.dbmodel.model.Geometry;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-
-import javax.persistence.Id;
 import java.util.List;
 
 @Getter
@@ -12,9 +12,11 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class PlaceDTO {
-    @Id
-    private Long id;
+
     @JsonProperty("name")
     private String name;
-    private List<String> types;
+    @JsonProperty("types")
+    List<String> types;
+    @JsonProperty("geometry")
+    private Geometry geometry;
 }
