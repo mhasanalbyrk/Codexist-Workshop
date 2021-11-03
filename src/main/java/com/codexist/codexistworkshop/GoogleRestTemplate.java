@@ -10,6 +10,7 @@ public class GoogleRestTemplate {
     @Bean("googleRestTemp")
     RestTemplate restTemplate(){
 
+
         return new RestTemplate();
     }
 }

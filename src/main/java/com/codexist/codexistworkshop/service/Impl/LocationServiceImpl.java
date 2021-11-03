@@ -48,7 +48,7 @@ public class LocationServiceImpl implements LocationService {
             // radius=2000&
             // region=us&type=cafe,bakery&
             // key=MY_API_KEY"
-            String MY_API_KEY = "";
+            String MY_API_KEY = "AIzaSyDGe7ZwRTj16ZP8a9VCM8xXWaneCx4S7BY";
             //https://www.geeksforgeeks.org/how-to-call-or-consume-external-api-in-spring-boot/
             String uri = "https://maps.googleapis.com/maps/api/place/nearbysearch/" +
                     "json?location=" +
@@ -58,9 +58,10 @@ public class LocationServiceImpl implements LocationService {
                     "&radius=" +
                     geoLocation.getRadius() +
                     "&key=" + MY_API_KEY;
-            RestTemplate restTemplate = new RestTemplate();
 
-            ResponseEntity<NearbyResponse> result = restTemplate.getForEntity(uri, NearbyResponse.class);
+            // RestTemplate restTemplate = new RestTemplate();
+
+            ResponseEntity<NearbyResponse> result = newRestTemplate.getForEntity(uri, NearbyResponse.class);
 
 
             return null;
