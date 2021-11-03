@@ -1,10 +1,7 @@
 package com.codexist.codexistworkshop.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
@@ -13,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@SuperBuilder
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class NearbyPlaces extends BaseEntity{

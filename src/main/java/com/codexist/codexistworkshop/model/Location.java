@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 @Entity
+@Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)

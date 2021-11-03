@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-
 @AllArgsConstructor
 public class LocationServiceImpl implements LocationService {
 
@@ -26,15 +25,17 @@ public class LocationServiceImpl implements LocationService {
     public NearbyPlaces compareLocation(GeoLocation geoLocation) {
 
 
-        if (locationRepository.existsByLocation(
-                geoLocation.getAltitude().toString()
-                        + geoLocation.getLongitude().toString()
-                        + geoLocation.getRadius().toString())) {
+//        if (locationRepository.existsByLocation(
+//                geoLocation.getAltitude().toString()
+//                        + geoLocation.getLongitude().toString()
+//                        + geoLocation.getRadius().toString())) {
+//
+//            return null;
+//        }
+//
+//        return null;
 
-            return null;
-        }
-
-        return null;
+        return  null;
     }
 
     public NearbyPlaces googleApiCall(GeoLocation geoLocation) throws JSONException {
