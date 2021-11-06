@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/acep
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        globaly_quoated_identifiers: true
